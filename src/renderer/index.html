@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>File Buster Overlay</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="stage">
+    <!-- Scene anchor dynamically positioned at the exact (x, y) coordinate where the file was deleted -->
+    <div id="scene-anchor">
+      <!-- Modern Minimalist File Card centered at (0, 0) -->
+      <div id="target-container">
+        <div id="target-card">
+          <!-- Folded top-right corner accent -->
+          <div class="card-fold"></div>
+
+          <!-- Terrified comic eyes and trembling sweat drop -->
+          <div class="comic-eyes">
+            <div class="eye eye-left"><div class="pupil"></div></div>
+            <div class="eye eye-right"><div class="pupil"></div></div>
+            <div class="sweat-drop"></div>
+          </div>
+
+          <!-- Modern Minimalist Vector Icon Glyph Slot -->
+          <div id="file-icon-slot"></div>
+
+          <!-- High-Contrast File Type Tag -->
+          <div id="file-ext-tag">FILE</div>
+        </div>
+
+        <!-- Modern Frosted Filename Pill Badge -->
+        <div id="file-badge">
+          <span id="file-name">document.txt</span>
+        </div>
+      </div>
+
+      <!-- Gun flipper container (mirrors horizontally if file is near left screen edge) -->
+      <div id="gun-flipper">
+        <!-- Close-range Comic Revolver aiming directly at the file -->
+        <div id="gun-container">
+          <img id="gun-img" src="../../assets/images/cartoon_gun.png" alt="Cartoon Gun" />
+        </div>
+        <!-- Realistic 2D Cartoon Muzzle Flash & Smoke blast at barrel tip -->
+        <div id="muzzle-flash">
+          <img id="muzzle-smoke-img" src="../../assets/images/muzzle_smoke.png" alt="Muzzle Smoke" />
+        </div>
+      </div>
+
+      <!-- Comic POW! BANG! Explosion centered directly over the file -->
+      <div id="explosion-container">
+        <img id="explosion-img" src="../../assets/images/comic_explosion.png" alt="Comic Explosion" />
+      </div>
+    </div>
+
+    <!-- Particle Canvas for paper shards, sparks and smoke -->
+    <canvas id="fx-canvas"></canvas>
+  </div>
+
+  <script src="icons.js"></script>
+  <script src="particles.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+{
+  "name": "file-buster",
+  "version": "1.0.0",
+  "description": "Windows desktop app that gamifies file deletion with explosion and gunshot visual animations",
+  "main": "src/main/index.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "keywords": [
+    "electron",
+    "windows",
+    "file-buster",
+    "animation",
+    "gamification"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "chokidar": "^4.0.3"
+  },
+  "devDependencies": {
+    "electron": "^35.0.0"
+  }
+}

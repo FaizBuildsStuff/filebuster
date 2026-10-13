@@ -1,0 +1,19 @@
+# Dependencies
+node_modules/
+
+# Logs & Diagnostics
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Windows System Files
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Editor & IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
