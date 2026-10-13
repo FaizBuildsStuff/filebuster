@@ -10,7 +10,11 @@ class ConfigStore {
       windowPosition: null, // { x, y }
       watchedPaths: [
         path.join(os.homedir(), 'Desktop'),
-        path.join(os.homedir(), 'Downloads')
+        path.join(os.homedir(), 'Downloads'),
+        path.join(os.homedir(), 'Documents'),
+        path.join(os.homedir(), 'Pictures'),
+        path.join(os.homedir(), 'Videos'),
+        path.join(os.homedir(), 'Music')
       ],
       filterTempFiles: true
     };

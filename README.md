@@ -71,8 +71,9 @@ File Buster automatically classifies extensions into **10+ distinct themes** wit
 3. **The file stays visible on your screen** while the glassmorphic card pops in and shivers with fear.
 4. The revolver pops out point-blank, cocks back, and at the exact **650ms BANG!**, the file is authoritatively deleted from disk while exploding into fragments!
 
-#### Mode 2: Standard Windows Delete / Del Key
-- Pressing `Delete` or `Shift+Delete` on files in watched folders (Desktop, Downloads) triggers an **immediate 0ms reaction** right at the file's screen coordinates.
+#### Mode 2: System-Wide Deletion Watcher (All Drives & Folders)
+- Automatically monitors **All Drives (C:, D:, E:, F:, etc.)** via Global Recycle Bin metadata and primary user areas (**Desktop, Downloads, Documents, Pictures, Videos, Music**).
+- Pressing `Delete` anywhere across the entire PC triggers an **immediate 0ms reaction** right at the file's screen coordinates.
 
 ### 🧠 Smart Multi-Display & Screen Clamping
 - **Edge-Smart Mirroring:** If a file is located along the left edge of your screen (standard Windows desktop icons), the gun automatically mirrors (`.from-right`) and appears from the right side so it never clips off-screen.
