@@ -32,7 +32,10 @@ function runReg(args) {
 async function registerContextMenu() {
   try {
     const cmd = getCommandString();
-    const icoPath = path.resolve(__dirname, '../../assets/icons/icon.ico');
+    const isPackaged = Boolean(app && app.isPackaged);
+    const icoPath = isPackaged
+      ? process.execPath
+      : path.resolve(__dirname, '../../assets/icons/icon.ico');
 
     // 1. Context menu for files
     await runReg([

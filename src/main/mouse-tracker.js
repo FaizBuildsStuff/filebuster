@@ -13,7 +13,10 @@ class MouseTracker {
     this.stop();
 
     const path = require('path');
-    const scriptPath = path.join(__dirname, 'tracker.ps1');
+    const fs = require('fs');
+    const defaultPath = path.join(__dirname, 'tracker.ps1');
+    const unpackedPath = defaultPath.replace('app.asar', 'app.asar.unpacked');
+    const scriptPath = fs.existsSync(unpackedPath) ? unpackedPath : defaultPath;
 
     try {
       this.proc = spawn('powershell.exe', [
