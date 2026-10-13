@@ -1,11 +1,23 @@
 const { Tray, Menu, nativeImage, app } = require('electron');
+const path = require('path');
+const fs = require('fs');
 const { generateCrosshairPng } = require('./icon-generator');
 
 let tray = null;
 
 function setupTray(onTestBust) {
-  const pngBuffer = generateCrosshairPng(32);
-  const icon = nativeImage.createFromBuffer(pngBuffer).resize({ width: 16, height: 16 });
+  const icoPath = path.join(__dirname, '../../assets/icons/icon.ico');
+  const pngPath = path.join(__dirname, '../../assets/icons/tray-32.png');
+  let icon = null;
+
+  if (fs.existsSync(icoPath)) {
+    icon = nativeImage.createFromPath(icoPath);
+  } else if (fs.existsSync(pngPath)) {
+    icon = nativeImage.createFromPath(pngPath).resize({ width: 16, height: 16 });
+  } else {
+    const pngBuffer = generateCrosshairPng(32);
+    icon = nativeImage.createFromBuffer(pngBuffer).resize({ width: 16, height: 16 });
+  }
 
   tray = new Tray(icon);
   tray.setToolTip('File Buster - Running in Background');

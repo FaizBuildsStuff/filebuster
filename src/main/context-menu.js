@@ -3,14 +3,18 @@ const path = require('path');
 const { app } = require('electron');
 
 function getCommandString() {
-  const electronExe = process.execPath;
-  const isDev = !app.isPackaged;
+  const isPackaged = Boolean(app && app.isPackaged);
   const appPath = path.resolve(__dirname, '../../');
 
-  if (isDev) {
-    return `"${electronExe}" "${appPath}" --bust "%1"`;
+  if (isPackaged) {
+    return `"${process.execPath}" --bust "%1"`;
   }
-  return `"${electronExe}" --bust "%1"`;
+
+  const electronExe = (process.versions && process.versions.electron)
+    ? process.execPath
+    : path.resolve(__dirname, '../../node_modules/electron/dist/electron.exe');
+
+  return `"${electronExe}" "${appPath}" --bust "%1"`;
 }
 
 function runReg(args) {
@@ -28,6 +32,7 @@ function runReg(args) {
 async function registerContextMenu() {
   try {
     const cmd = getCommandString();
+    const icoPath = path.resolve(__dirname, '../../assets/icons/icon.ico');
 
     // 1. Context menu for files
     await runReg([
@@ -36,6 +41,16 @@ async function registerContextMenu() {
       '/ve',
       '/d',
       'Bust with File Buster 💥',
+      '/f'
+    ]);
+
+    await runReg([
+      'add',
+      'HKCU\\Software\\Classes\\*\\shell\\FileBuster',
+      '/v',
+      'Icon',
+      '/d',
+      icoPath,
       '/f'
     ]);
 
@@ -55,6 +70,16 @@ async function registerContextMenu() {
       '/ve',
       '/d',
       'Bust with File Buster 💥',
+      '/f'
+    ]);
+
+    await runReg([
+      'add',
+      'HKCU\\Software\\Classes\\Directory\\shell\\FileBuster',
+      '/v',
+      'Icon',
+      '/d',
+      icoPath,
       '/f'
     ]);
 

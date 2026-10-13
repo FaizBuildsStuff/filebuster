@@ -127,6 +127,11 @@ You don't need to delete your own files to experience File Buster:
 ```
 filebuster/
 ├── assets/
+│   ├── logo.png                    # Master File Buster folder-burst logo
+│   ├── icons/
+│   │   ├── icon.ico                # Multi-resolution Windows application icon
+│   │   ├── icon.png                # 512x512 transparent master icon
+│   │   └── tray-32.png             # System tray taskbar icon
 │   └── images/
 │       ├── cartoon_gun.png         # Stylized 2D cell-shaded revolver
 │       ├── muzzle_smoke.png        # Shot muzzle flash and smoke plume sprite

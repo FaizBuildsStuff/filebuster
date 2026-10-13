@@ -25,6 +25,7 @@ function createOverlayWindow() {
     focusable: false,
     fullscreenable: false,
     backgroundColor: '#00000000',
+    icon: path.join(__dirname, '../../assets/icons/icon.ico'),
     webPreferences: {
       preload: path.join(__dirname, '../preload/preload.js'),
       contextIsolation: true,
