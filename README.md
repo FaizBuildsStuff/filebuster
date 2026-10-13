@@ -180,3 +180,4 @@ Custom settings are stored locally in `%APPDATA%/filebuster/config.json`:
 ## 📜 License
 
 MIT License. Designed with ❤️ for desktop enthusiasts who want to make file deletion exciting!
+# filebuster
