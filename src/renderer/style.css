@@ -62,34 +62,253 @@ html, body {
 }
 
 #target-card {
-  width: 88px;
-  height: 108px;
+  width: 90px;
+  height: 112px;
   position: relative;
-  background: rgba(18, 20, 29, 0.94);
-  border: 1.5px solid rgba(255, 255, 255, 0.14);
-  border-radius: 18px;
-  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.65), 0 0 24px var(--theme-glow);
-  backdrop-filter: blur(20px);
+  background: #ffffff; /* Default: Crisp ditto white document */
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 8px;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.35), 0 2px 8px rgba(0, 0, 0, 0.15);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  padding: 12px 6px 10px 6px;
+  padding: 10px 6px 8px 6px;
   overflow: visible;
-  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-/* Folded top-right corner aesthetic accent */
+/* --- 1. DITTO WHITE DOCUMENT (Word, Text, PDF, Sheets) --- */
+#target-card.type-doc,
+#target-card.type-generic {
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-top: 5px solid #2563eb;
+  border-top-right-radius: 4px;
+}
+
+#target-card.type-pdf {
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-top: 5px solid #ef4444;
+  border-top-right-radius: 4px;
+}
+
+#target-card.type-sheet {
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-top: 5px solid #10b981;
+  border-top-right-radius: 4px;
+}
+
+/* Authentic Dog-Ear Folded Corner */
 .card-fold {
+  display: block;
   position: absolute;
-  top: -1.5px;
-  right: -1.5px;
+  top: -1px;
+  right: -1px;
   width: 20px;
   height: 20px;
-  background: rgba(255, 255, 255, 0.12);
-  border-bottom-left-radius: 10px;
-  border-top-right-radius: 17px;
+  background: #e2e8f0;
+  border-bottom-left-radius: 6px;
+  border-top-right-radius: 4px;
+  box-shadow: -2px 2px 4px rgba(0, 0, 0, 0.15);
+  border-left: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   pointer-events: none;
+  z-index: 3;
+}
+
+/* --- 2. DITTO FOLDER (Golden Manila Tabbed Folder) --- */
+#target-card.type-folder {
+  background: linear-gradient(180deg, #fbbf24 0%, #f59e0b 100%);
+  border: 1.5px solid #d97706;
+  border-radius: 10px;
+  box-shadow: 0 16px 32px rgba(217, 119, 6, 0.35), 0 4px 10px rgba(0, 0, 0, 0.25);
+  padding-top: 14px;
+}
+
+#target-card.type-folder .card-fold {
+  display: none;
+}
+
+.folder-tab {
+  display: none;
+}
+
+#target-card.type-folder .folder-tab {
+  display: block;
+  position: absolute;
+  top: -8px;
+  left: 6px;
+  width: 38px;
+  height: 10px;
+  background: #f59e0b;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  border: 1.5px solid #d97706;
+  border-bottom: none;
+}
+
+.folder-flap {
+  display: none;
+}
+
+#target-card.type-folder .folder-flap {
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 52px;
+  background: linear-gradient(180deg, #f59e0b 0%, #d97706 100%);
+  border-radius: 0 0 9px 9px;
+  border-top: 1.5px solid rgba(254, 243, 199, 0.6);
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* --- 3. DITTO PHOTO / IMAGE (White Polaroid Style) --- */
+#target-card.type-image {
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 8px;
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.35);
+  padding: 8px 6px 12px 6px;
+}
+
+#target-card.type-image .card-fold {
+  display: none;
+}
+
+/* --- 4. DITTO VIDEO CLAPPERBOARD --- */
+#target-card.type-video {
+  background: #18181b;
+  border: 1.5px solid #27272a;
+  border-radius: 10px;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.55), 0 0 20px rgba(244, 63, 94, 0.35);
+}
+
+#target-card.type-video .card-fold {
+  display: none;
+}
+
+.video-clapper {
+  display: none;
+}
+
+#target-card.type-video .video-clapper {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 13px;
+  background: repeating-linear-gradient(
+    -45deg,
+    #ffffff,
+    #ffffff 7px,
+    #18181b 7px,
+    #18181b 14px
+  );
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  border-bottom: 2px solid #27272a;
+  z-index: 2;
+}
+
+/* --- 5. DITTO AUDIO SLEEVE --- */
+#target-card.type-audio {
+  background: #1e1b4b;
+  border: 1.5px solid #312e81;
+  border-radius: 12px;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.5), 0 0 20px rgba(236, 72, 153, 0.35);
+}
+
+#target-card.type-audio .card-fold {
+  display: none;
+}
+
+/* --- 6. DITTO CODE EDITOR --- */
+#target-card.type-code {
+  background: #0f172a;
+  border: 1.5px solid #1e293b;
+  border-radius: 10px;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.55), 0 0 20px rgba(6, 182, 212, 0.35);
+  padding-top: 14px;
+}
+
+#target-card.type-code .card-fold {
+  display: none;
+}
+
+.code-dots {
+  display: none;
+}
+
+#target-card.type-code .code-dots {
+  display: flex;
+  gap: 4px;
+  position: absolute;
+  top: 6px;
+  left: 8px;
+}
+
+.code-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+.dot-red { background: #ef4444; }
+.dot-yellow { background: #eab308; }
+.dot-green { background: #22c55e; }
+
+/* --- 7. DITTO ZIP ARCHIVE --- */
+#target-card.type-archive {
+  background: #fef3c7;
+  border: 1.5px solid #d97706;
+  border-radius: 10px;
+  box-shadow: 0 16px 32px rgba(217, 119, 6, 0.35);
+}
+
+#target-card.type-archive .card-fold {
+  display: none;
+}
+
+.zipper-stripe {
+  display: none;
+}
+
+#target-card.type-archive .zipper-stripe {
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 6px;
+  transform: translateX(-50%);
+  background: repeating-linear-gradient(
+    180deg,
+    #78350f,
+    #78350f 3px,
+    #fef3c7 3px,
+    #fef3c7 6px
+  );
+  border-left: 1px solid #b45309;
+  border-right: 1px solid #b45309;
+  z-index: 1;
+}
+
+/* --- 8. DITTO EXECUTABLE --- */
+#target-card.type-exe {
+  background: #1e293b;
+  border: 1.5px solid #334155;
+  border-radius: 12px;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.55), 0 0 20px rgba(249, 115, 22, 0.35);
+}
+
+#target-card.type-exe .card-fold {
+  display: none;
 }
 
 /* Terrified comic eyes on top of the card */
@@ -153,34 +372,40 @@ html, body {
 
 /* Modern Minimalist Vector Icon Glyph Slot */
 #file-icon-slot {
-  width: 44px;
-  height: 44px;
-  margin-top: 8px;
+  width: 52px;
+  height: 52px;
+  margin-top: 6px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--theme-color);
-  filter: drop-shadow(0 4px 8px var(--theme-glow));
+  z-index: 3;
 }
 
-#file-icon-slot svg {
+.ditto-svg {
   width: 100%;
   height: 100%;
   display: block;
 }
 
+.native-shell-icon {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.25));
+}
+
 /* High-Contrast Modern Pill Badge for Extension (e.g. PDF, XLSX, PNG) */
 #file-ext-tag {
-  font-size: 9.5px;
+  font-size: 9px;
   font-weight: 800;
   letter-spacing: 0.8px;
   text-transform: uppercase;
   color: #ffffff;
-  background: var(--theme-gradient);
-  padding: 3px 9px;
-  border-radius: 8px;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.4), 0 0 10px var(--theme-glow);
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+  background: var(--theme-color, #2563eb);
+  padding: 2.5px 8px;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+  z-index: 3;
 }
 
 /* Modern Frosted Filename Pill Badge */

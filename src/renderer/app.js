@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const stage = document.getElementById('stage');
   const sceneAnchor = document.getElementById('scene-anchor');
   const targetContainer = document.getElementById('target-container');
+  const targetCard = document.getElementById('target-card');
   const fileNameEl = document.getElementById('file-name');
   const fileExtTag = document.getElementById('file-ext-tag');
   const fileIconSlot = document.getElementById('file-icon-slot');
@@ -20,6 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
     sceneAnchor.classList.remove('shake-scene');
 
     targetContainer.className = '';
+    if (targetCard) targetCard.className = '';
     gunContainer.className = '';
     muzzleFlash.className = '';
     explosionContainer.className = '';
@@ -52,17 +54,28 @@ document.addEventListener('DOMContentLoaded', () => {
     const isFolder = Boolean(data.isDirectory || (!fileName.includes('.') && !data.filePath?.includes('.')));
     const theme = window.getFileTheme(fileName, isFolder);
 
+    // Apply Ditto Card Class (type-doc, type-folder, type-image, type-video, etc.)
+    if (targetCard) {
+      targetCard.className = theme.cardClass || 'type-doc';
+    }
+
     // Apply Dynamic Theme Colors
-    targetContainer.style.setProperty('--theme-color', theme.gradient[0]);
+    targetContainer.style.setProperty('--theme-color', theme.badgeColor || theme.gradient[0]);
     targetContainer.style.setProperty('--theme-glow', theme.glow);
     targetContainer.style.setProperty(
       '--theme-gradient',
       `linear-gradient(135deg, ${theme.gradient[0]}, ${theme.gradient[1]})`
     );
 
-    // Set Minimalist SVG Icon & Tag
-    fileIconSlot.innerHTML = theme.svg;
+    // If authentic Windows shell icon was extracted, render it; otherwise render clean ditto vector SVG
+    if (data.iconUrl) {
+      fileIconSlot.innerHTML = `<img class="native-shell-icon" src="${data.iconUrl}" alt="" />`;
+    } else {
+      fileIconSlot.innerHTML = theme.svg;
+    }
+
     fileExtTag.textContent = theme.label;
+    fileExtTag.style.background = theme.badgeColor || theme.gradient[0];
 
     // Pupil gaze adjustment: look towards the gun
     const pupils = document.querySelectorAll('.pupil');
